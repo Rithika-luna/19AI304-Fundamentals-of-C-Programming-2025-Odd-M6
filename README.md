@@ -234,80 +234,64 @@ Thus, the program was implemented and executed successfully, and the required ou
 ```
 #include<stdio.h>
 
-int add(int a, int b)
+struct employee
 {
-    return a + b;
-}
-
-int subtract(int a, int b)
-{
-    return a - b;
-}
-
-int multiply(int a, int b)
-{
-    return a * b;
-}
-
-int divide(int a, int b)
-{
-    return a / b;
-}
+    int eno;
+    char ename[50];
+    float salary;
+};
 
 int main()
 {
-    int num1, num2, choice, result;
-    int (*operation)(int, int);
+    struct employee emp[100];
+    int n, i;
+    float high;
 
-    printf("Enter two integers: ");
-    scanf("%d %d", &num1, &num2);
+    printf("Enter the number of employees: ");
+    scanf("%d", &n);
 
-    printf("\nMenu\n");
-    printf("1. Add\n");
-    printf("2. Subtract\n");
-    printf("3. Multiply\n");
-    printf("4. Divide\n");
-
-    printf("Enter your choice: ");
-    scanf("%d", &choice);
-
-    switch(choice)
+    for(i = 0; i < n; i++)
     {
-        case 1:
-            operation = add;
-            break;
+        printf("\nEnter details of employee %d\n", i + 1);
 
-        case 2:
-            operation = subtract;
-            break;
+        printf("Employee Number: ");
+        scanf("%d", &emp[i].eno);
 
-        case 3:
-            operation = multiply;
-            break;
+        printf("Employee Name: ");
+        scanf(" %[^\n]", emp[i].ename);
 
-        case 4:
-            if(num2 == 0)
-            {
-                printf("Division by zero is not possible");
-                return 1;
-            }
-            operation = divide;
-            break;
-
-        default:
-            printf("Invalid choice");
-            return 1;
+        printf("Employee Salary: ");
+        scanf("%f", &emp[i].salary);
     }
 
-    result = operation(num1, num2);
+    high = emp[0].salary;
 
-    printf("Result = %d", result);
+    for(i = 1; i < n; i++)
+    {
+        if(emp[i].salary > high)
+        {
+            high = emp[i].salary;
+        }
+    }
+
+    printf("\nEmployee(s) with Highest Salary:\n");
+
+    for(i = 0; i < n; i++)
+    {
+        if(emp[i].salary == high)
+        {
+            printf("\nEmployee Number : %d", emp[i].eno);
+            printf("\nEmployee Name   : %s", emp[i].ename);
+            printf("\nEmployee Salary : %.2f\n", emp[i].salary);
+        }
+    }
 
     return 0;
 }
+
 ```
 # Output:
-<img width="1820" height="781" alt="{C71EC479-C734-405F-BB31-EB1478A43697}" src="https://github.com/user-attachments/assets/8c0499ad-7cf3-4612-9cdd-944ac02b1824" />
+<img width="1750" height="748" alt="{6B235327-53F7-4A75-9C8C-A97119CCA42D}" src="https://github.com/user-attachments/assets/b6f5fa9d-a58d-4a30-b59b-b5838b7f6b5a" />
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -350,7 +334,55 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 9:
   Stop
 # Program:
+```
+#include<stdio.h>
+
+struct date
+{
+    int c_date, c_month, c_year;
+    int b_date, b_month, b_year;
+    int cal_date, cal_month, cal_year;
+};
+
+struct date* findAge(struct date *d)
+{
+    int month[] = {31,28,31,30,31,30,31,31,30,31,30,31};
+
+    if(d->b_date > d->c_date)
+    {
+        d->c_date = d->c_date + month[d->c_month - 2];
+        d->c_month = d->c_month - 1;
+    }
+
+    if(d->b_month > d->c_month)
+    {
+        d->c_year = d->c_year - 1;
+        d->c_month = d->c_month + 12;
+    }
+
+    d->cal_date = d->c_date - d->b_date;
+    d->cal_month = d->c_month - d->b_month;
+    d->cal_year = d->c_year - d->b_year;
+
+    return d;
+}
+
+int main()
+{
+    struct date d = {28, 5, 2026, 15, 8, 2005};
+
+    findAge(&d);
+
+    printf("Present Age:\n");
+    printf("%d Years %d Months %d Days\n",
+           d.cal_year, d.cal_month, d.cal_date);
+
+    return 0;
+}
+```
 # Output:
+<img width="1920" height="784" alt="{1D12AEF6-2E4A-49AC-825E-8F90ACAB6C5C}" src="https://github.com/user-attachments/assets/d1602563-73d1-4c00-b177-5fd2b11a782d" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -386,7 +418,33 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 10:
   Stop
 # Program:
+```
+#include<stdio.h>
+
+union abc
+{
+    int a;
+    char b;
+};
+
+int main()
+{
+    union abc var;
+    union abc *ptr;
+
+    ptr = &var;
+
+    ptr->a = 90;
+
+    printf("Integer value = %d\n", ptr->a);
+    printf("Character value = %c\n", ptr->b);
+
+    return 0;
+}
+```
+
 # Output:
+<img width="1817" height="737" alt="{F5C31746-6E73-49CE-ADBE-E8A4CFFD73E7}" src="https://github.com/user-attachments/assets/604f07bd-8c9d-4a5d-acd9-b80ee6133a79" />
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
