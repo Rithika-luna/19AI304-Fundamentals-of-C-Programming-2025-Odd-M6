@@ -33,7 +33,38 @@ To develop a C program using the static storage class in a function with a param
 ### Step 8:
   Stop
 # Program:
+```
+#include<stdio.h>
+
+void display(int n)
+{
+    static float base = 100.25;
+
+    base = base + n;
+
+    printf("%.2f\t", base);
+
+    base = base + 99.25;
+}
+
+int main()
+{
+    int input, i;
+
+    printf("Enter the value: ");
+    scanf("%d", &input);
+
+    for(i = 0; i < 5; i++)
+    {
+        display(input);
+    }
+
+    return 0;
+}
+```
 # Output:
+<img width="1458" height="751" alt="{FE14EDF0-E0E4-4DDE-AA01-6324D64CCC9B}" src="https://github.com/user-attachments/assets/a94eff4d-0cc9-435e-bd60-0b8e593450a3" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -79,7 +110,84 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 11:
   Stop
 # Program:
+```
+#include<stdio.h>
+
+int add(int a, int b)
+{
+    return a + b;
+}
+
+int subtract(int a, int b)
+{
+    return a - b;
+}
+
+int multiply(int a, int b)
+{
+    return a * b;
+}
+
+int divide(int a, int b)
+{
+    return a / b;
+}
+
+int main()
+{
+    int num1, num2, choice, result;
+    int (*operation)(int, int);
+
+    printf("Enter two integers: ");
+    scanf("%d %d", &num1, &num2);
+
+    printf("\nMenu\n");
+    printf("1. Add\n");
+    printf("2. Subtract\n");
+    printf("3. Multiply\n");
+    printf("4. Divide\n");
+
+    printf("Enter your choice: ");
+    scanf("%d", &choice);
+
+    switch(choice)
+    {
+        case 1:
+            operation = add;
+            break;
+
+        case 2:
+            operation = subtract;
+            break;
+
+        case 3:
+            operation = multiply;
+            break;
+
+        case 4:
+            if(num2 == 0)
+            {
+                printf("Division by zero is not possible");
+                return 1;
+            }
+            operation = divide;
+            break;
+
+        default:
+            printf("Invalid choice");
+            return 1;
+    }
+
+    result = operation(num1, num2);
+
+    printf("Result = %d", result);
+
+    return 0;
+}
+```
+
 # Output:
+<img width="1734" height="785" alt="{CA3CFCDA-7FD7-4327-804D-5FC24BEEE04E}" src="https://github.com/user-attachments/assets/4eb8e25c-a326-4e91-9b6f-e889f186c271" />
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -123,7 +231,83 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 10:
   Stop
 # Program:
+```
+#include<stdio.h>
+
+int add(int a, int b)
+{
+    return a + b;
+}
+
+int subtract(int a, int b)
+{
+    return a - b;
+}
+
+int multiply(int a, int b)
+{
+    return a * b;
+}
+
+int divide(int a, int b)
+{
+    return a / b;
+}
+
+int main()
+{
+    int num1, num2, choice, result;
+    int (*operation)(int, int);
+
+    printf("Enter two integers: ");
+    scanf("%d %d", &num1, &num2);
+
+    printf("\nMenu\n");
+    printf("1. Add\n");
+    printf("2. Subtract\n");
+    printf("3. Multiply\n");
+    printf("4. Divide\n");
+
+    printf("Enter your choice: ");
+    scanf("%d", &choice);
+
+    switch(choice)
+    {
+        case 1:
+            operation = add;
+            break;
+
+        case 2:
+            operation = subtract;
+            break;
+
+        case 3:
+            operation = multiply;
+            break;
+
+        case 4:
+            if(num2 == 0)
+            {
+                printf("Division by zero is not possible");
+                return 1;
+            }
+            operation = divide;
+            break;
+
+        default:
+            printf("Invalid choice");
+            return 1;
+    }
+
+    result = operation(num1, num2);
+
+    printf("Result = %d", result);
+
+    return 0;
+}
+```
 # Output:
+<img width="1820" height="781" alt="{C71EC479-C734-405F-BB31-EB1478A43697}" src="https://github.com/user-attachments/assets/8c0499ad-7cf3-4612-9cdd-944ac02b1824" />
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
